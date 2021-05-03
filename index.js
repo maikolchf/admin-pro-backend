@@ -10,17 +10,15 @@ const app = express();
 //cors
 app.use(cors());
 
+//lectura del body
+app.use(express.json());
+
 //DB
 dbConnection();
 
 
-//rutas
-app.get( '/', (req, res) => {
-    res.json({
-        ok: true,
-        msj: 'Hola mundo'
-    })
-} );
+//Rutas
+app.use('/api/Usuarios', require('./routes/usuarios'));
 
 
 
