@@ -26,6 +26,7 @@ app.use('/api/Hospitales', require('./routes/hospitales'));
 app.use('/api/Medicos', require('./routes/medicos'));
 app.use('/api/Login', require('./routes/auth'));
 app.use('/api/Todo', require('./routes/busquedas'));
+app.use('/api/upload', require('./routes/uploads'));
 
 
 
