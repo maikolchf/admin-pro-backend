@@ -32,8 +32,6 @@ const fileUpload =  async(req, res = response) => {
     const file = req.files.imagen;
     const nombreSplit = file.name.split('.');
     const extencion = nombreSplit[nombreSplit.length - 1].toLowerCase();
-    console.log(nombreSplit);
-    console.log(extencion);
     const extenccionesValidas = ['jpg','png','jpeg','gif'];
     
 
@@ -58,8 +56,20 @@ const fileUpload =  async(req, res = response) => {
         }
     })
 
-    actualizarImagen(tipo, id, path, nombreArchivo);
+    const respuesta = actualizarImagen(tipo, id, nombreArchivo);
 
+    if(!respuesta){
+        return res.status(500).json({
+            ok:false,
+            msj: 'Error al subir la imagen'
+        });
+    }
+
+    return res.json({
+        ok:true,
+        msj: 'Archivo subido',
+        nombreArchivo
+    });
 }
 
 module.exports = {
